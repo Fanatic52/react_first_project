@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../asserts/images/user.png";
-import Preloader from "../common/Preloader/Preloader";
 
 let Users = (props) => {
     let usersJSX = props.users.map(u => <div key={u.id}>
