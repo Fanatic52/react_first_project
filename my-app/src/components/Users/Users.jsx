@@ -1,12 +1,15 @@
 import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../asserts/images/user.png";
+import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
     let usersJSX = props.users.map(u => <div key={u.id}>
             <span>
                 <div className={styles.userPhoto}>
-                    <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
+                    <NavLink to={'/profile/' + u.id}>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="avatar"/>
+                    </NavLink>
                 </div>
                 <div>
                     { u.followed

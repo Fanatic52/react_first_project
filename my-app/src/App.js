@@ -5,12 +5,12 @@ import './App.css';
 
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -19,8 +19,8 @@ const App = (props) => {
             <Header/>
             <Sidebar/>
             <div className='app-wrapper-content'>
-                <Route path='/profile'
-                       render={() => <Profile />} />
+                <Route path='/profile/:userId?'
+                       render={() => <ProfileContainer />} />
                 <Route path='/dialogs'
                        render={() => <MessagesContainer />} />
                 <Route path='/users'
