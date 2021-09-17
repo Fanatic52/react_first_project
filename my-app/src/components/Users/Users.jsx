@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../asserts/images/user.png";
+import Preloader from "../common/Preloader/Preloader";
 
 let Users = (props) => {
-    let usersJSX = props.users.map(u =>
-        <div key={u.id}>
+    let usersJSX = props.users.map(u => <div key={u.id}>
             <span>
                 <div className={styles.userPhoto}>
                     <img src={u.photos.small != null ? u.photos.small : userPhoto}/>
@@ -26,8 +26,7 @@ let Users = (props) => {
                     <div>{"u.location.city"}</div>
                 </span>
             </span>
-        </div>
-    )
+        </div>)
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pagesNumbers = [];
