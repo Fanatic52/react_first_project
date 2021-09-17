@@ -19,19 +19,25 @@ let initialState = {
 
 const messagesReducer = (state = initialState, action) => {
     switch(action.type) {
-        case ADD_MESSAGE: {
-            let newMessage = {
-                id: 5,
-                message: state.newMessageText,
+        case ADD_MESSAGE:
+            return {
+                ...state,
+                newMessageText: '',
+                messages: [...state.messages,
+                    {
+                        id: 5,
+                        message: state.newMessageText,
+                    }
+                ],
             };
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-        } break;
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            state.newMessageText = action.newText;
-        } break;
+        case UPDATE_NEW_MESSAGE_TEXT:
+            return {
+                ...state,
+                newMessageText: action.newMessageText,
+            };
+        default:
+            return state;
     }
-    return state;
 }
 
 export const addMessageCreator = () => ({
@@ -39,7 +45,7 @@ export const addMessageCreator = () => ({
 })
 export const updateNewMessageTextCreator = (text) => ({
     type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: text,
+    newMessageText: text,
 })
 
 export default messagesReducer;

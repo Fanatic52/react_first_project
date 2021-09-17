@@ -2,7 +2,6 @@ import React from "react";
 import MessagesCss from "./Messages.module.css";
 import MessageItem from "./MessageItem/MessageItem";
 import Message from "./Message/Message";
-import {addMessageCreator, updateNewMessageTextCreator} from "../../redux/reducers/messages-reducer";
 
 const Messages = (props) => {
 
