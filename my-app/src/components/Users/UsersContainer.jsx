@@ -1,35 +1,21 @@
 import React from 'react';
 import {connect} from "react-redux";
-import axios from "axios";
 import {
     follow,
-    setCurrentPage,
-    setUsers,
-    setUsersTotalCount, toggleFollowingProgress,
-    toggleIsFetching,
+    getUsers,
+    setCurrentPage, setUsers, setUsersTotalCount, toggleFollowingProgress, toggleIsFetching,
     unfollow
 } from "../../redux/reducers/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import {usersAPI} from "../../api/api";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setUsersTotalCount(data.totalCount);
-            });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChangedClick = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-            });
+        this.props.getUsers(pageNumber, this.props.pageSize);
     };
 
     render() {
@@ -45,7 +31,6 @@ class UsersContainer extends React.Component {
                     unfollow={this.props.unfollow}
                     isFetching={this.props.isFetching}
                     followingInProgress={this.props.followingInProgress}
-                    toggleFollowingProgress={this.props.toggleFollowingProgress}
                 />
             </>
     }
@@ -70,5 +55,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setUsersTotalCount,
     toggleIsFetching,
-    toggleFollowingProgress
+    toggleFollowingProgress,
+    getUsers
 })(UsersContainer);
