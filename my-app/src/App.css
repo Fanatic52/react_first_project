@@ -12,6 +12,15 @@
   grid-template-columns: 2fr 10fr;
 }
 
+.app-wrapper input {
+  font-size: 1em;
+}
+
+.app-wrapper textarea {
+  font-size: 1em;
+}
+
+
 .app-wrapper-content {
   grid-area: c;
   background-color: lightblue;
