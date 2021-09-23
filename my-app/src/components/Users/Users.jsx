@@ -2,8 +2,6 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../asserts/images/user.png";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
 
 let Users = (props) => {
     let usersJSX = props.users.map(u => <div key={u.id}>

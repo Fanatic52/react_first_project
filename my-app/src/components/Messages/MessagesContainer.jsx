@@ -1,8 +1,7 @@
 import React from "react";
-import {addMessageCreator, updateNewMessageTextCreator} from "../../redux/reducers/messages-reducer";
+import {addMessageCreator} from "../../redux/reducers/messages-reducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 
@@ -13,16 +12,13 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageText: (text) => {
-            dispatch(updateNewMessageTextCreator(text));
-        },
-        addMessage: () => {
-            dispatch(addMessageCreator());
+        addMessage: (text) => {
+            dispatch(addMessageCreator(text));
         },
     }
 }
 
 export default compose(
+    withAuthRedirect,
     connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect
 )(Messages);
