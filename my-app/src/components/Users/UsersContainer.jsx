@@ -21,11 +21,13 @@ import {
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props
+        this.props.requestUsers(currentPage, pageSize);
     }
 
-    onPageChangedClick = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+    onPageChanged = (pageNumber) => {
+        let {pageSize} = this.props;
+        this.props.requestUsers(pageNumber, pageSize);
     };
 
     render() {
@@ -36,7 +38,7 @@ class UsersContainer extends React.Component {
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
-                    onPageChangedClick={this.onPageChangedClick}
+                    onPageChanged={this.onPageChanged}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
                     isFetching={this.props.isFetching}

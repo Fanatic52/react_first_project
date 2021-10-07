@@ -3,19 +3,19 @@ import style from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHocks from "./ProfileStatusWithHocks";
 
-const ProfileInfo = (props) => {
-    if(!props.profile) {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {
+    if(!profile) {
         return <Preloader />
     }
+    //todo process a situation when photo is null
     return (
         <div>
             <div className={style.descriptionBlock}>
-                <img src={props.profile.photos.large} alt="avatar"/>
+                <img src={profile.photos.large} alt="avatar"/>
                 ava + description
                 <ProfileStatusWithHocks
-                    status={props.status}
-                    updateUserStatus={props.updateUserStatus}
-                />
+                    status={status}
+                    updateUserStatus={updateUserStatus}/>
             </div>
         </div>
     )

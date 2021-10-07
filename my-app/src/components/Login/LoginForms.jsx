@@ -1,21 +1,21 @@
 import {Field, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
-import {maxLengthCreator, required} from "../utils/validators/validators";
+import {maxLengthCreator, required} from "../../utils/validators/validators";
 import React from "react";
 import style from "./../common/FormsControls/FormsControls.module.css";
 
 const maxLength40 = maxLengthCreator(40);
 
-const LoginComponent = (props) => {
+const LoginComponent = ({handleSubmit, error}) => {
     let summaryErrorBlock = (
-        props.error
+        error
         ? <div className={style.formSummaryError}>
-            {props.error}
+            {error}
         </div>
         : null
     );
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     component={Input}
