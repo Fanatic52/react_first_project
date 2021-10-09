@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {connect} from "react-redux";
 import {
     follow,
@@ -15,8 +15,8 @@ import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
-    getPageSize,
-    getTotalUsersCount
+    getPagesSize,
+    getTotalUsersCount,
 } from "../../redux/reducers/users-selectors";
 
 class UsersContainer extends React.Component {
@@ -36,7 +36,7 @@ class UsersContainer extends React.Component {
                 <Users
                     users={this.props.users}
                     totalUsersCount={this.props.totalUsersCount}
-                    pageSize={this.props.pageSize}
+                    pagesSize={this.props.pagesSize}
                     currentPage={this.props.currentPage}
                     onPageChanged={this.onPageChanged}
                     follow={this.props.follow}
@@ -51,7 +51,7 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
-        pageSize: getPageSize(state),
+        pagesSize: getPagesSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),

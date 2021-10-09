@@ -1,3 +1,15 @@
+.paginator {
+    margin: 10px;
+}
+.pageNumber {
+    font-size: 0.8em;
+    text-align: center;
+    padding: 2px;
+    min-width: 40px;
+    border: 1px solid gray;
+    display: inline-block;
+}
+
 .selectedPage {
     font-weight: bold;
 }

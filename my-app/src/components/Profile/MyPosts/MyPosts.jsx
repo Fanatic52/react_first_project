@@ -7,7 +7,7 @@ let MyPosts = (props) => {
     let postsElements =
         [...props.posts]
             .reverse()
-            .map(post => <Posts message={post.message} likes={post.likes}/>)
+            .map(post => <Posts message={post.message} likes={post.likes} key={post.id}/>)
 
     let addNewPost = (values) => {
         props.addPost(values.newPostText);

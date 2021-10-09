@@ -9,9 +9,9 @@ const Messages = (props) => {
     let state = props.messagePage;
 
     let dialogsJSX =
-        state.dialogs.map(dialog => <MessageItem id={dialog.id} name={dialog.name}/>);
+        state.dialogs.map(dialog => <MessageItem id={dialog.id} name={dialog.name} key={dialog.id}/>);
     let messageJSX =
-        state.messages.map(message => <Message message={message.message}/>)
+        state.messages.map(message => <Message message={message.message} key={message.id}/>)
 
     let addNewMessage = (values) => {
         props.addMessage(values.newMessageText);
@@ -23,7 +23,7 @@ const Messages = (props) => {
                 {dialogsJSX}
             </div>
             <div className={style.messages}>
-                <div> {messageJSX} </div>
+                {messageJSX}
             </div>
             <AddMessageForm onSubmit={addNewMessage} />
         </div>
