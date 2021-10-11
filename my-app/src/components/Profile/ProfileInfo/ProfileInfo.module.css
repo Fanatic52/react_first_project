@@ -5,3 +5,10 @@
 .mainPhoto {
     max-width: 200px;
 }
+
+.contactsItems {
+    font-size: 0.7em;
+    padding-left: 20px;
+    border-left: solid gray 2px;
+    border-bottom-left-radius: 20px;
+}

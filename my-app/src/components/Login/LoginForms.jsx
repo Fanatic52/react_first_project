@@ -7,13 +7,6 @@ import style from "./../common/FormsControls/FormsControls.module.css";
 const maxLength40 = maxLengthCreator(40);
 
 const LoginComponent = ({handleSubmit, error}) => {
-    let summaryErrorBlock = (
-        error
-        ? <div className={style.formSummaryError}>
-            {error}
-        </div>
-        : null
-    );
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -37,7 +30,9 @@ const LoginComponent = ({handleSubmit, error}) => {
                     name={"rememberMe"}/>
                 remember me
             </div>
-            {summaryErrorBlock}
+            {error
+                ? <div className={style.formSummaryError}> {error} </div>
+                : null}
             <div>
                 <button>Login</button>
             </div>

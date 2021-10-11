@@ -1,4 +1,5 @@
 import {profileAPI} from "../../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -11,7 +12,27 @@ let initialState = {
         {id: 1, message: 'hi bro', likes: 12},
         {id: 2, message: 'you look very well', likes: 13},
     ],
-    profile: null,
+    profile: {
+        userId: null,
+        fullName: null,
+        aboutMe: null,
+        lookingForAJob: null,
+        lookingForAJobDescription: null,
+        photos: {
+            large: null,
+            small: null,
+        },
+        contacts: {
+            github: null,
+            vk: null,
+            facebook: null,
+            instagram: null,
+            twitter: null,
+            website: null,
+            youtube: null,
+            mainLink: null,
+        }
+    },
     status: '',
 };
 
@@ -77,6 +98,18 @@ export const savePhoto = (photoFile) => async (dispatch) => {
     let response = await profileAPI.savePhoto(photoFile);
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+}
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    let response = await profileAPI.saveProfile(profile);
+    if (response.data.resultCode === 0) {
+        let userId = getState().auth.userId;
+        dispatch(getUserProfile(userId));
+    }
+    else {
+        dispatch(stopSubmit("profileData", {_error: response.data.messages[0]}));
+        //return error message if we need to process it
+        return Promise.reject(response.data.messages[0]);
     }
 }
 
