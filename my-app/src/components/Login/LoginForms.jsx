@@ -6,7 +6,7 @@ import style from "./../common/FormsControls/FormsControls.module.css";
 
 const maxLength40 = maxLengthCreator(40);
 
-const LoginComponent = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -16,6 +16,7 @@ const LoginComponent = ({handleSubmit, error}) => {
                     placeholder={"Email"}
                     name={"email"}/>
             </div>
+
             <div>
                 <Field
                     component={Input}
@@ -23,6 +24,7 @@ const LoginComponent = ({handleSubmit, error}) => {
                     placeholder={"Password"} type={"password"}
                     name={"password"}/>
             </div>
+
             <div>
                 <Field
                     component={Input}
@@ -30,6 +32,17 @@ const LoginComponent = ({handleSubmit, error}) => {
                     name={"rememberMe"}/>
                 remember me
             </div>
+
+            { captchaUrl &&
+            <div>
+                <img src={captchaUrl}/>
+                <Field
+                component={Input}
+                validate={[required]}
+                placeholder={"Symbols from image"}
+                name={"captcha"}/>
+            </div>}
+
             {error
                 ? <div className={style.formSummaryError}> {error} </div>
                 : null}
@@ -39,8 +52,8 @@ const LoginComponent = ({handleSubmit, error}) => {
         </form>
     );
 }
-const LoginForm = reduxForm({
+const LoginFormWithRedux = reduxForm({
     form: 'login'
-})(LoginComponent);
+})(LoginForm);
 
-export default LoginForm;
+export default LoginFormWithRedux;
