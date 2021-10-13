@@ -47,6 +47,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
 
 const ProfileInfo = ({profile, status, updateUserStatus, isOwner, savePhoto, saveProfile}) => {
     let [editMode, setEditMode] = useState(false);
+
     if(!profile) {
         return <Preloader />
     }
