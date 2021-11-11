@@ -14,7 +14,7 @@ let initialState = {
         {id: 2, message: 'you look very well', likes: 13},
     ] as Array<PostType>,
     profile: {
-        userId: null,
+        id: null,
         fullName: null,
         aboutMe: null,
         lookingForAJob: false,

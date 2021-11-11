@@ -9,7 +9,7 @@
   "n c";
 
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 1.4fr 10fr;
 }
 
 .app-wrapper input,
@@ -25,6 +25,7 @@
 
 
 .app-wrapper-content {
+  padding-left: 15px;
   grid-area: c;
-  background-color: lightblue;
+  background-color: #ffffff;
 }

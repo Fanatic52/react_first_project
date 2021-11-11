@@ -9,7 +9,7 @@ import usersReducer from "./reducers/users-reducer";
 import authReducer from "./reducers/auth-reducer";
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     app: appReducer,
     profilePage: profileReducer,
     messagePage: messagesReducer,
@@ -19,8 +19,13 @@ let reducers = combineReducers({
     form: formReducer,
 });
 
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>;
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, /* preloadedState, */ composeEnhancers( applyMiddleware(thunkMiddleware) ));
+const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers( applyMiddleware(thunkMiddleware) ));
+// @ts-ignore
 window.__store__ = store;
 
 export default store;

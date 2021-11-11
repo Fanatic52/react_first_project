@@ -3,6 +3,7 @@
 }
 
 .mainPhoto {
+    border-radius: 50%;
     max-width: 200px;
 }
 

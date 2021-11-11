@@ -49,7 +49,7 @@ class App extends Component {
                             <Route path="/dialogs"
                                    render={() => <MessagesContainer/>}/>
                             <Route path="/users"
-                                   render={() => <UsersContainer/>}/>
+                                   render={() => <UsersContainer pageTitle={"some name"}/>}/>
                             <Route path="/news"
                                    render={() => <News/>}/>
                             <Route path="/music"

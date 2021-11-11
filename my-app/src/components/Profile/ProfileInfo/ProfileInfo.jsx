@@ -69,14 +69,11 @@ const ProfileInfo = ({profile, status, updateUserStatus, isOwner, savePhoto, sav
                 src={profile.photos.large || userPhoto}
                 alt="avatar"
                 className={style.mainPhoto}/>
-            {isOwner &&
-            <input
-                type={"file"}
-                onChange={mainPhotoSelected}/>}
             { editMode
                 ? <ProfileDataForm
                     profile={profile}
                     initialValues={profile}
+                    mainPhotoSelected={mainPhotoSelected}
                     onSubmit={onSubmit}/>
                 : <ProfileData
                     profile={profile}

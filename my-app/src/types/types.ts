@@ -18,7 +18,7 @@ export type ContactsType = {
     mainLink: string | null,
 }
 export type UserType = {
-    userId: number | null,
+    id: number | null,
     fullName: string | null,
     aboutMe: string | null,
     lookingForAJob: boolean,

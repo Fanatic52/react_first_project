@@ -12,10 +12,12 @@ const Header = (props) => {
     );
     return (
         <header className={style.header}>
-            <img src='https://www.focus2move.com/wp-content/uploads/2020/08/Tesla-Roadster-2020-1024-03.jpg' alt="logo"/>
-
-            <div className={style.loginBlock}>
-                {logBlock}
+            <div className={style.content}>
+                <img src='https://www.focus2move.com/wp-content/uploads/2020/08/Tesla-Roadster-2020-1024-03.jpg' alt="logo"/>
+                {"- My Site"}
+                <div className={style.loginBlock}>
+                    {logBlock}
+                </div>
             </div>
         </header>
     )

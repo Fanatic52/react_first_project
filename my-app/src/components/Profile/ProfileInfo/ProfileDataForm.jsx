@@ -7,7 +7,7 @@ import {maxLengthCreator, required} from "../../../utils/validators/validators";
 
 const maxLength40 = maxLengthCreator(40);
 
-const ProfileDataForm = ({handleSubmit, profile, error}) => {
+const ProfileDataForm = ({handleSubmit, profile, mainPhotoSelected, error}) => {
     return <form onSubmit={handleSubmit}>
         <div>
             <button>save</button>
@@ -15,6 +15,12 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
         {error
             ? <div className={styleOfError.formSummaryError}> {error} </div>
             : null}
+        <div>
+            <b>Photo</b>:<br/>
+            <input
+                type={"file"}
+                onChange={mainPhotoSelected}/>
+        </div>
         <div>
             <b>Full name</b>:
             <Field
