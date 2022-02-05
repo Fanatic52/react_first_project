@@ -1,6 +1,6 @@
-import {combineReducers, createStore, applyMiddleware, compose} from "redux";
+import {combineReducers, createStore, applyMiddleware, compose, Dispatch, Action} from "redux";
 import {reducer as formReducer} from 'redux-form';
-import thunkMiddleware from "redux-thunk";
+import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import appReducer from "./reducers/app-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import messagesReducer from "./reducers/messages-reducer";
@@ -21,6 +21,11 @@ let rootReducer = combineReducers({
 
 type RootReducerType = typeof rootReducer;
 export type AppStateType = ReturnType<RootReducerType>;
+
+type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never;
+export type InferActionsTypes<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>
+
+export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

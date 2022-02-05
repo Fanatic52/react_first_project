@@ -26,3 +26,11 @@ export type UserType = {
     photos: PhotosType
     contacts: ContactsType
 }
+export type ProfileType = {
+    userId: number,
+    fullName: string,
+    lookingForAJob: boolean,
+    lookingForAJobDescription: string,
+    photos: PhotosType
+    contacts: ContactsType
+}
