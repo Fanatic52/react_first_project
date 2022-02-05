@@ -1,5 +1,7 @@
 import {usersAPI} from "../../api/api";
 import {UserType} from "../../types/types";
+import {AppStateType} from "../redux-store";
+import {Dispatch} from "redux";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -19,7 +21,11 @@ let initialState = {
 };
 type InitialStateType = typeof initialState;
 
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+
+type ActionTypes = FollowSuccessType | UnfollowSuccessType | SetUsersType |
+    SetCurrentPageType | SetUsersTotalCountType | ToggleIsFetchingType |
+    ToggleFollowingProgressType;
+const usersReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch(action.type) {
         case FOLLOW:
             return  {
@@ -110,8 +116,10 @@ type ToggleFollowingProgressType = {
 }
 export const toggleFollowingProgress = (isFetching: boolean, userId: number): ToggleFollowingProgressType => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
 
+type GetStateType = () => AppStateType;
+type CurrentDispatchType = Dispatch<ActionTypes>;
 export const requestUsers = (page: number, pageSize: number) => {
-    return async (dispatch: any) => {
+    return async (dispatch: CurrentDispatchType, getState: GetStateType) => {
         dispatch(toggleIsFetching(true));
         let response = await usersAPI.getUsers(page, pageSize);
         dispatch(setCurrentPage(page));
