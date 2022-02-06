@@ -1,13 +1,19 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import style from "./ProfileInfo.module.css";
 import styleOfError from "./../../common/FormsControls/FormsControls.module.css";
 import {Input, Textarea} from "../../common/FormsControls/FormsControls";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {ProfileType} from "../../../types/types";
 
 const maxLength40 = maxLengthCreator(40);
 
-const ProfileDataForm = ({handleSubmit, profile, mainPhotoSelected, error}) => {
+type PropsType = {
+    profile: ProfileType
+    onMainPhotoSelected: (e: ChangeEvent<HTMLInputElement>) => void
+}
+
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({handleSubmit, profile, onMainPhotoSelected, error}) => {
     return <form onSubmit={handleSubmit}>
         <div>
             <button>save</button>
@@ -19,7 +25,7 @@ const ProfileDataForm = ({handleSubmit, profile, mainPhotoSelected, error}) => {
             <b>Photo</b>:<br/>
             <input
                 type={"file"}
-                onChange={mainPhotoSelected}/>
+                onChange={onMainPhotoSelected}/>
         </div>
         <div>
             <b>Full name</b>:
@@ -66,7 +72,7 @@ const ProfileDataForm = ({handleSubmit, profile, mainPhotoSelected, error}) => {
         </div>
     </form>
 }
-const ProfileDataFormWithRedux = reduxForm({
+const ProfileDataFormWithRedux = reduxForm<ProfileType, PropsType>({
     form: 'profileData'
 })(ProfileDataForm);
 

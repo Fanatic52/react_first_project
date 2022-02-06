@@ -4,7 +4,7 @@ import {InferActionsTypes} from "../redux-store";
 let initialState = {
     initialized: false,
 };
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 type ActionType = InferActionsTypes<typeof actions>
 
 const appReducer = (state = initialState, action: ActionType): InitialStateType => {

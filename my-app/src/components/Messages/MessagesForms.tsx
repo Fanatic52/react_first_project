@@ -1,11 +1,14 @@
 import {maxLengthCreator, required} from "../../utils/validators/validators";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../common/FormsControls/FormsControls";
 import React from "react";
+import {newMessageFormValuesType} from "./Messages";
 
 const maxLength50 = maxLengthCreator(50);
 
-const AddMessageComponent = (props) => {
+type PropsType = {}
+
+const AddMessageComponent: React.FC<InjectedFormProps<newMessageFormValuesType, PropsType> & PropsType> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -22,8 +25,4 @@ const AddMessageComponent = (props) => {
     )
 }
 
-const AddMessageForm = reduxForm({
-    form: "messagesAddMessageForm"
-})(AddMessageComponent);
-
-export default AddMessageForm;
+export default reduxForm<newMessageFormValuesType>({form: "messagesAddMessageForm"})(AddMessageComponent)

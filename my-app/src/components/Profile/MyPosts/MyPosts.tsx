@@ -1,15 +1,23 @@
 import React from 'react';
 import MyPostsCss from './MyPosts.module.css';
 import Posts from "./Post/Posts";
-import AddNewPostForm from "./MyPostsForms";
+import AddNewPostForm, {AddPostFormValuesType} from "./MyPostsForms";
+import {PostType} from "../../../types/types";
 
-let MyPosts = (props) => {
+export type MapPropsType = {
+    posts: Array<PostType>
+}
+export type DispatchPropsType = {
+    addPost: (newPostText: string) => void
+}
+
+let MyPosts: React.FC<MapPropsType & DispatchPropsType> = (props) => {
     let postsElements =
         [...props.posts]
             .reverse()
             .map(post => <Posts message={post.message} likes={post.likes} key={post.id}/>)
 
-    let addNewPost = (values) => {
+    let addNewPost = (values : AddPostFormValuesType) => {
         props.addPost(values.newPostText);
     }
 
@@ -22,7 +30,7 @@ let MyPosts = (props) => {
             </div>
         </div>
     )
-};
-MyPosts = React.memo(MyPosts);
+}
+MyPosts = React.memo(MyPosts)
 
-export default MyPosts;
+export default MyPosts

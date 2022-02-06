@@ -1,7 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 
 type PropsType = {
-    editMode: boolean
     status: string
     updateUserStatus: (newStatus: string) => void
 }

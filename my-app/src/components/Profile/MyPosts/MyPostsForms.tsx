@@ -1,17 +1,25 @@
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
-import {Field, reduxForm} from "redux-form";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../../common/FormsControls/FormsControls";
 import React from "react";
 
-const maxLength10 = maxLengthCreator(10);
+const maxLength50 = maxLengthCreator(50);
 
-let AddNewPostComponent = (props) => {
+type PropsType = {
+
+}
+
+export type AddPostFormValuesType = {
+    newPostText: string
+}
+
+let AddNewPostComponent: React.FC<InjectedFormProps<AddPostFormValuesType, PropsType> & PropsType> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field
                     component={Textarea}
-                    validate={[required, maxLength10]}
+                    validate={[required, maxLength50]}
                     name="newPostText"
                     placeholder="Enter your post"
                 />
@@ -23,7 +31,7 @@ let AddNewPostComponent = (props) => {
     )
 }
 
-let AddNewPostForm = reduxForm({
+let AddNewPostForm = reduxForm<AddPostFormValuesType, PropsType>({
     form: "profileAddPostForm"
 })(AddNewPostComponent);
 

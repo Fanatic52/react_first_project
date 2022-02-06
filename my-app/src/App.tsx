@@ -12,16 +12,21 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {initializeApp} from "./redux/reducers/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
-import store from "./redux/redux-store";
+import store, {AppStateType} from "./redux/redux-store";
 
 const MessagesContainer = React.lazy(() => import("./components/Messages/MessagesContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
-class App extends Component {
-    catchAllUnhandledErrors = (reason, promise) => {
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+    initializeApp: () => void
+}
+
+class App extends Component<MapPropsType & DispatchPropsType> {
+
+    catchAllUnhandledErrors = (reason: PromiseRejectionEvent) => {
         reason.promise.catch(e => alert(e.message));
     }
-
 
     componentDidMount() {
         this.props.initializeApp();
@@ -68,16 +73,16 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 });
 
-let AppContainer = compose(
+let AppContainer = compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, { initializeApp }),
 )(App);
 
-let AppContainerWithRouter = () => {
+let AppContainerWithRouter: React.FC = () => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer />

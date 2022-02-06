@@ -11,7 +11,7 @@ let initialState = {
     isFetching: true,
     followingInProgress: [] as Array<number>, //array of users ids
 };
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionTypes>

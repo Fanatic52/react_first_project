@@ -4,21 +4,15 @@ import Messages from "./Messages";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {AppStateType} from "../../redux/redux-store";
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
-        messagePage: state.messagePage,
-    }
-}
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: (text) => {
-            dispatch(actions.addMessageCreator(text));
-        },
+        messagesPage: state.messagePage,
     }
 }
 
-export default compose(
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {...actions}),
     withAuthRedirect,
-    connect(mapStateToProps, mapDispatchToProps),
 )(Messages);

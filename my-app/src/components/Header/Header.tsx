@@ -2,7 +2,15 @@ import React from "react";
 import style from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 
-const Header = (props) => {
+export type MapPropsType = {
+    isAuth: boolean
+    login: string | null
+}
+export type DispatchPropsType = {
+    logout: () => void
+}
+
+const Header: React.FC<MapPropsType & DispatchPropsType> = (props) => {
     let logBlock = (
         props.isAuth
         ? <div>

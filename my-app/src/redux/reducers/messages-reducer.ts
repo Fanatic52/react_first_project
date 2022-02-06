@@ -23,11 +23,11 @@ let initialState = {
         {id: 4, message: 'Yo'},
     ] as Array<MessageType>,
 };
-type initialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionType = InferActionsTypes<typeof actions>
 
-const messagesReducer = (state = initialState, action: ActionType): initialStateType => {
+const messagesReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch(action.type) {
         case 'SN/MESSAGES/ADD_MESSAGE':
             return {
@@ -45,7 +45,7 @@ const messagesReducer = (state = initialState, action: ActionType): initialState
 }
 
 export const actions = {
-    addMessageCreator: (newMessageText: string) => ({
+    addMessage: (newMessageText: string) => ({
         type: 'SN/MESSAGES/ADD_MESSAGE',
         newMessageText,
     } as const),

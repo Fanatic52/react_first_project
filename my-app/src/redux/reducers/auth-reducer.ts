@@ -11,7 +11,7 @@ let initialState = {
     isAuth: false,
     captchaUrl: null as string | null,
 };
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionTypes | ReturnType<typeof stopSubmit>>
