@@ -14,7 +14,8 @@
 
 .app-wrapper input,
 .app-wrapper textarea,
-.app-wrapper button {
+.app-wrapper button,
+.app-wrapper select {
   font-size: 1em;
 }
 
